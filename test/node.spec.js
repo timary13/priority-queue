@@ -1,4 +1,5 @@
 const Node = require('../src/node');
+const mocha = require('../test/setup-mocha');
 
 describe('Node', () => {
 	describe('#constructor', () => {
