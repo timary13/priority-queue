@@ -139,25 +139,18 @@ class MaxHeap {
             parentPosition = this.parentNodes.indexOf(node.parent);
             currentPosition = this.parentNodes.indexOf(node);
 
-            if (node.parent.priority > node.priority) {
-                console.log("parent.priority > node.priority");
+            if (node.parent.priority >= node.priority) {
                 return;
             }
-            console.log("swap");
             //if no node in parentNodes
             if (!this.swap(parentPosition, currentPosition)) {
                 this.parentNodes[currentPosition] = node.parent;
             }
             node.swapWithParent();
-            /*console.log("root= " + this.root.data);
-            console.log("root left= " + this.root.left.data);
-            console.log("root right=    " + this.root.right.data);
-            console.log("root left left= " + this.root.left.left.data);
-            console.log("root left right= " + this.root.left.right.data);*/
+
             //currentPosition = parentPosition;
             this.shiftNodeUp(node);
         } else {
-            console.log("new root " + node.data);
             this.root = node;
         }
     }

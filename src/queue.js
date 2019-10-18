@@ -19,7 +19,7 @@ class PriorityQueue {
         if (this.heap.isEmpty()) {
             throw Error("Empty!");
         } else {
-            return this.heap.pop();
+        	return this.heap.pop();
         }
     }
 
