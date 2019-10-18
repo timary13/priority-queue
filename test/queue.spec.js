@@ -1,5 +1,6 @@
 const Queue = require('../src/queue');
 const MaxHeap = require('../src/max-heap');
+const mocha = require('../test/setup-mocha');
 
 describe('PriorityQueue', () => {
 	describe('#constructor', () => {

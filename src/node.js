@@ -40,45 +40,55 @@ class Node {
 
     swapWithParent() {
         if (!this.parent) {
+
         } else {
+            if (this.left)
+                this.left.parent = this.parent;
+            if (this.right)
+                this.right.parent = this.parent;
+
             let temp_parent = this.parent.parent;
-            let temp_left = this.left;
-            let temp_right = this.right;
 
-			if (temp_parent) {
-				if (temp_parent.left && this.parent.data == temp_parent.left.data && this.parent.priority == temp_parent.left.priority) {
-					temp_parent.left = this;
-				} else if (temp_parent.right && this.parent.data == temp_parent.right.data && this.parent.priority == temp_parent.right.priority) {
-					temp_parent.right = this;
-				}
-			}
-			this.parent.parent = this;
-
-            if (this.parent.left) {
-                if(this.parent.left.data == this.data && this.parent.left.priority == this.priority) {
-                    this.left = this.parent;
-                    this.right = this.parent.right;
+            if (this.parent.left == this) {
+                //and another child
+                if (this.parent.right) {
+                    this.parent.right.parent = this;
                 }
-                else {
+
+                //node is left for parent
+                this.parent.left = this.left;
+                let temp = this.parent.right;
+                this.parent.right = this.right;
+                this.left = this.parent;
+                this.right = temp;
+            }
+            //node is right for parent
+            if (this.parent.right == this) {
+                if (this.parent.left) {
                     //another child
                     this.parent.left.parent = this;
                 }
 
-            } else if (this.parent.right) {
-                if(this.parent.right.data == this.data && this.parent.right.priority == this.priority) {
-                    this.right = this.parent;
-                    this.left = this.parent.left;
-                }
-                else {
-                    //another child
-                    this.parent.right.parent = this;
+                let temp = this.parent.left;
+                this.parent.left = this.left;
+                this.parent.right = this.right;
+                this.right = this.parent;
+                this.left = temp;
+            }
+
+            if (temp_parent) {
+                if (temp_parent.left && this.parent == temp_parent.left) {
+                    temp_parent.left = this;
+                } else if (temp_parent.right && this.parent == temp_parent.right) {
+                    temp_parent.right = this;
                 }
             }
-            this.parent.left = temp_left;
-            this.parent.right = temp_right;
+
+            this.parent.parent = this;
             this.parent = temp_parent;
 
         }
+
     }
 }
 

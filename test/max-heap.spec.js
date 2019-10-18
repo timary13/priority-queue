@@ -1,5 +1,6 @@
 const Node = require('../src/node');
 const MaxHeap = require('../src/max-heap');
+const mocha = require('../test/setup-mocha');
 
 describe('MaxHeap', () => {
 	describe('#constructor', () => {
